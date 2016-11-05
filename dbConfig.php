@@ -2,10 +2,21 @@
 
 session_start();
 
+/*
+ * 
 $DB_host = "localhost";
 $DB_user = "root";
 $DB_pass = "";
-$DB_name = "dblogin";
+$DB_name = "dblogin"; */
+
+$url = parse_url(getenv("CLEARDB_DATABASE_URL"));
+
+$DB_host = $url["host"];
+$DB_user = $url["user"];
+$DB_pass = $url["pass"];
+$DB_name = substr($url["path"], 1);
+
+$conn = new mysqli($server, $username, $password, $db);
 
 try
 {
